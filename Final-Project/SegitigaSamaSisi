@@ -6,9 +6,9 @@ package maen;
 public class SegitigaSamaSisi extends BangunDatar {
     double sisi;
 
-    public SegitigaSamaSisi(double s) {
+    public SegitigaSamaSisi(double sisi) {
         super("Segitiga Sama Sisi");
-        this.sisi = s;
+        this.sisi = sisi;
     }
 
     public double hitungLuas() {
