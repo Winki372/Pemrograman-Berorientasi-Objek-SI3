@@ -1,0 +1,23 @@
+package maen;
+/**
+ *
+ * @author thori
+ */
+public class SegitigaSamaSisi extends BangunDatar {
+    double sisi;
+
+    public SegitigaSamaSisi(double s) {
+        super("Segitiga Sama Sisi");
+        this.sisi = s;
+    }
+
+    public double hitungLuas() {
+        // Rumus luas segitiga sama sisi: (s^2 / 4) * akar 3
+        return (sisi * sisi / 4) * Math.sqrt(3);
+    }
+
+
+    public double hitungKeliling() {
+        return 3 * sisi;
+    }
+}
