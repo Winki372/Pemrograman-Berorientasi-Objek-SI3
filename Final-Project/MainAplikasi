@@ -11,7 +11,7 @@ public class MainAplikasi extends JFrame {
 
     public MainAplikasi() {
         setTitle("Kalkulator Bangun Datar Lengkap");
-        setSize(350, 400); 
+        setSize(350, 350); 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
         setLocationRelativeTo(null);
