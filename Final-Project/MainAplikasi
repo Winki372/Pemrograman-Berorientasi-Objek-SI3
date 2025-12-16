@@ -92,7 +92,6 @@ public class MainAplikasi extends JFrame {
                 lbl1.setText("Alas:");
                 lbl2.setText("Sisi Miring:"); // Input beda khusus Sama Kaki
             } else {
-                // Siku-siku & Jajar Genjang
                 lbl1.setText("Alas:");
                 lbl2.setText("Tinggi:");
             }
@@ -114,9 +113,7 @@ public class MainAplikasi extends JFrame {
                 case "Persegi Panjang": obj = new PersegiPanjang(v1, v2); break;
                 case "Lingkaran": obj = new Lingkaran(v1); break;
                 case "Jajar Genjang": obj = new JajarGenjang(v1, v2); break;
-                
-                // Segitiga - Segitigaan
-                case "Segitiga Siku-siku": obj = new SegitigaSikuSiku(v1, v2); break; // Ini file Segitiga.java yg lama
+                case "Segitiga Siku-siku": obj = new SegitigaSikuSiku(v1, v2); break;
                 case "Segitiga Sama Sisi": obj = new SegitigaSamaSisi(v1); break;
                 case "Segitiga Sama Kaki": obj = new SegitigaSamaKaki(v1, v2); break;
             }
