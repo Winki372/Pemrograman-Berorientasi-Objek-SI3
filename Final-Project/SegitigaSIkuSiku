@@ -1,0 +1,23 @@
+package maen;
+/**
+ *
+ * @author thori
+ */
+public class SegitigaSikuSiku extends BangunDatar {
+    double alas, tinggi;
+    
+    public SegitigaSikuSiku(double alas, double tinggi) {
+        super("Segitiga Siku-siku");
+        this.alas = alas;
+        this.tinggi = tinggi;
+    }
+    
+    public double hitungLuas(){
+    return 0.5 * alas * tinggi;
+    }
+    
+    public double hitungKeliling(){
+    double miring = Math.sqrt((alas * alas) + (tinggi * tinggi));
+    return alas + tinggi + miring;
+    }
+}
