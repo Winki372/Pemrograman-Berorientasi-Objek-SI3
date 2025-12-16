@@ -1,0 +1,25 @@
+package maen;
+/**
+ *
+ * @author thori
+ */
+public class SegitigaSamaKaki extends BangunDatar {
+    double alas, sisiMiring;
+
+    public SegitigaSamaKaki(double alas, double sisimiring) {
+        super("Segitiga Sama Kaki");
+        this.alas = alas;
+        this.sisiMiring = sisimiring;
+    }
+
+    public double hitungLuas() {
+        double setengahAlas = 0.5 * alas;
+        double tinggi = Math.sqrt((sisiMiring * sisiMiring) - (setengahAlas * setengahAlas));
+        
+        return 0.5 * alas * tinggi;
+    }
+
+    public double hitungKeliling() {
+        return alas + (2 * sisiMiring);
+    }
+}
