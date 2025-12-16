@@ -12,7 +12,6 @@ public class SegitigaSamaSisi extends BangunDatar {
     }
 
     public double hitungLuas() {
-        // Rumus luas segitiga sama sisi: (s^2 / 4) * akar 3
         return (sisi * sisi / 4) * Math.sqrt(3);
     }
 
