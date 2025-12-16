@@ -1,0 +1,138 @@
+package maen;
+
+import javax.swing.*;
+
+public class MainAplikasi extends JFrame {
+
+    JComboBox<String> combo;
+    JTextField txt1, txt2;
+    JLabel lbl1, lbl2, lblHasil;
+    JButton btnLuas, btnKeliling;
+
+    public MainAplikasi() {
+        setTitle("Kalkulator Bangun Datar Lengkap");
+        setSize(350, 400); 
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(null);
+        setLocationRelativeTo(null);
+
+        JLabel lPilih = new JLabel("Pilih Bangun:");
+        lPilih.setBounds(20, 20, 100, 25);
+        add(lPilih);
+
+        // 1. Pembuatan opsi
+        String[] opsi = {
+            "Persegi", 
+            "Persegi Panjang", 
+            "Segitiga Siku-siku",
+            "Segitiga Sama Sisi",
+            "Segitiga Sama Kaki",
+            "Lingkaran", 
+            "Jajar Genjang"
+        };
+        
+        combo = new JComboBox<>(opsi);
+        combo.setBounds(120, 20, 180, 25);
+        add(combo);
+
+        lbl1 = new JLabel("Sisi:");
+        lbl1.setBounds(20, 60, 100, 25);
+        add(lbl1);
+
+        txt1 = new JTextField();
+        txt1.setBounds(120, 60, 180, 25);
+        add(txt1);
+
+        lbl2 = new JLabel("Kosong:");
+        lbl2.setBounds(20, 100, 100, 25);
+        add(lbl2);
+
+        txt2 = new JTextField();
+        txt2.setBounds(120, 100, 180, 25);
+        txt2.setEnabled(false);
+        add(txt2);
+
+        btnLuas = new JButton("Hitung Luas");
+        btnLuas.setBounds(20, 150, 140, 30);
+        add(btnLuas);
+
+        btnKeliling = new JButton("Hitung Keliling");
+        btnKeliling.setBounds(170, 150, 140, 30);
+        add(btnKeliling);
+
+        lblHasil = new JLabel("Hasil: 0");
+        lblHasil.setBounds(20, 200, 300, 30);
+        add(lblHasil);
+
+        combo.addActionListener(e -> aturInput());
+        btnLuas.addActionListener(e -> hitung(true));
+        btnKeliling.addActionListener(e -> hitung(false));
+
+        aturInput();
+    }
+
+    // 2. LOGIKA LABEL INPUT DIPERBARUI
+    void aturInput() {
+        String pilih = (String) combo.getSelectedItem();
+        txt1.setText("");
+        txt2.setText("");
+
+        // Grup 1 Input (Sisi/Jari-jari)
+        if (pilih.equals("Persegi") || pilih.equals("Lingkaran") || pilih.equals("Segitiga Sama Sisi")) {
+            lbl1.setText(pilih.equals("Lingkaran") ? "Jari-jari:" : "Sisi:");
+            lbl2.setText("-");
+            txt2.setEnabled(false);
+        
+        // Grup 2 Input (Alas & Tinggi / Panjang & Lebar)
+        } else {
+            if (pilih.equals("Persegi Panjang")) {
+                lbl1.setText("Panjang:");
+                lbl2.setText("Lebar:");
+            } else if (pilih.equals("Segitiga Sama Kaki")) {
+                lbl1.setText("Alas:");
+                lbl2.setText("Sisi Miring:"); // Input beda khusus Sama Kaki
+            } else {
+                // Siku-siku & Jajar Genjang
+                lbl1.setText("Alas:");
+                lbl2.setText("Tinggi:");
+            }
+            txt2.setEnabled(true);
+        }
+    }
+
+    void hitung(boolean cariLuas) {
+        try {
+            String pilih = (String) combo.getSelectedItem();
+            double v1 = Double.parseDouble(txt1.getText());
+            double v2 = txt2.isEnabled() ? Double.parseDouble(txt2.getText()) : 0;
+
+            BangunDatar obj = null;
+
+            // 3. TAMBAHKAN CASE
+            switch (pilih) {
+                case "Persegi": obj = new Persegi(v1); break;
+                case "Persegi Panjang": obj = new PersegiPanjang(v1, v2); break;
+                case "Lingkaran": obj = new Lingkaran(v1); break;
+                case "Jajar Genjang": obj = new JajarGenjang(v1, v2); break;
+                
+                // Segitiga - Segitigaan
+                case "Segitiga Siku-siku": obj = new SegitigaSikuSiku(v1, v2); break; // Ini file Segitiga.java yg lama
+                case "Segitiga Sama Sisi": obj = new SegitigaSamaSisi(v1); break;
+                case "Segitiga Sama Kaki": obj = new SegitigaSamaKaki(v1, v2); break;
+            }
+
+            if (obj != null) {
+                double hasil = cariLuas ? obj.hitungLuas() : obj.hitungKeliling();
+                String jenis = cariLuas ? "Luas" : "Keliling";
+                lblHasil.setText(jenis + " " + obj.getNama() + " = " + String.format("%.2f", hasil));
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Masukkan angka!");
+        }
+    }
+
+    public static void main(String[] args) {
+        new MainAplikasi().setVisible(true);
+    }
+}
