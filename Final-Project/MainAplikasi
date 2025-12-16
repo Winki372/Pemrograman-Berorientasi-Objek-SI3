@@ -71,7 +71,7 @@ public class MainAplikasi extends JFrame {
         aturInput();
     }
 
-    // 2. LOGIKA LABEL INPUT DIPERBARUI
+    // 2. LOGIKA LABEL INPUT
     void aturInput() {
         String pilih = (String) combo.getSelectedItem();
         txt1.setText("");
