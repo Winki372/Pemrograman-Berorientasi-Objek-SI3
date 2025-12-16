@@ -1,0 +1,21 @@
+package maen;
+/**
+ *
+ * @author thori
+ */
+public class JajarGenjang extends BangunDatar {
+    double alas, tinggi;
+    
+    public JajarGenjang(double alas, double tinggi) {
+    super("Jajar Genjang");
+    this.alas = alas;
+    this.tinggi = tinggi;}
+
+    public double hitungLuas(){
+        return alas * tinggi;
+    }
+    
+    public double hitungKeliling(){
+        return 2 * (alas + tinggi);
+    }
+}
